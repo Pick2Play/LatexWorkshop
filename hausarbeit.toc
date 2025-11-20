@@ -1,8 +1,0 @@
-\contentsline {section}{\numberline {1}Einleitung}{1}{section.1}%
-\contentsline {section}{\numberline {2}Theoretische Grundlagen und Stand der Forschung}{1}{section.2}%
-\contentsline {section}{\numberline {3}Methodisches Vorgehen}{1}{section.3}%
-\contentsline {section}{\numberline {4}Konzeption des Artefakts}{1}{section.4}%
-\contentsline {section}{\numberline {5}Umsetzung des Artefakts}{1}{section.5}%
-\contentsline {section}{\numberline {6}Evaluation}{1}{section.6}%
-\contentsline {section}{\numberline {7}Reflexion}{2}{section.7}%
-\contentsline {section}{\numberline {8}Fazit und Ausblick}{2}{section.8}%
