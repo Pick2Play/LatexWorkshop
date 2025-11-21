@@ -1,5 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{+w}{    }\PYG{k+kt}{var}\PYG{+w}{ }\PYG{n}{persons}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{from}\PYG{+w}{ }\PYG{n}{p}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{n}{Persons}
-\PYG{+w}{        }\PYG{k}{where}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{.}\PYG{n}{firstName}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Susan\PYGZdq{}}
-\PYG{+w}{        }\PYG{k}{select}\PYG{+w}{ }\PYG{n}{p}\PYG{p}{;}
-\end{MintedVerbatim}
