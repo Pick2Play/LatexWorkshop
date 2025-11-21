@@ -9,3 +9,4 @@
 *.blg
 node_modules/
 dist/
+images/

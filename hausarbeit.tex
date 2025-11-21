@@ -7,6 +7,14 @@
 \usepackage{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\geometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{literatur.bib}
+
+\newcommand{\citeay}[1]{(\citeauthor{#1}, \citeyear{#1})}
+
 
 
 \begin{document}
@@ -47,6 +55,19 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
+\begin{abstract}
+Die Entwicklung von Frontend-Anwendungen spielt eine zentrale Rolle bei der Effizienzsteigerung und Prozessoptimierung in modernen Unternehmen. Dieser Hausarbeit mit dem Titel „Entwicklung eines Stammdatenmoduls in Angular mit .NET-API-Anbindung unter Berücksichtigung von Usability und Datenintegrität“ untersucht die Herausforderungen und Potenziale, die mit der Implementierung benutzerfreundlicher und leistungsfähiger Benutzeroberflächen verbunden sind.
+
+Im Fokus stehen sowohl technische als auch organisatorische Aspekte, die während der Migration und Neuentwicklung von Anwendungskomponenten eine Rolle spielen. Dabei werden Strategien zur Strukturierung des Entwicklungsprozesses, zur Entscheidungsfindung im Hinblick auf visuelle Gestaltung und logische Funktionalitäten sowie zum Umgang mit typischen technischen Schwierigkeiten analysiert.
+
+Die Ergebnisse verdeutlichen, dass der Einsatz moderner Frameworks wie Angular, Angular Material und Tailwind maßgeblich zur Standardisierung und Effizienz beiträgt. Gleichzeitig zeigt sich, dass neben der technologischen Umsetzung auch Faktoren wie klare Projektstrukturen und effektive Kommunikation innerhalb des Teams entscheidend für den Projekterfolg sind.
+
+Der Bericht liefert damit nicht nur eine Reflexion über den individuellen Entwicklungsprozess, sondern auch praxisnahe Erkenntnisse, die für zukünftige Projekte im Bereich der Frontend-Entwicklung von Relevanz sein können.
+
+% Genau 5 keywords !!!
+\textbf{Keywords: Angular, .NET-API-Anbindung, Frameworks, Usability, Datenintegrität}
+\end{abstract}
+
 \section{Einleitung}
 
 %Problemstellung und Motivation
@@ -59,8 +80,18 @@ Dieses Problem soll durch eine Modernisierung der Seite gelöst werden. Das alte
 Ziel des Prototyps ist, die Weboberfläche effizienter und benutzerfreundlicher für das Unternehmen zu machen. 
 Die Forschungsfrage „Wie können UI- und UX-Designentscheidungen bei der Entwicklung eines Angular-basierten Stammdatenmoduls mit .NET-API-Anbindung zur Verbesserung der Usability beitragen?" soll die technische Umsetzung in den Vordergrund stellen. Dabei sollen die Wirkung der UI- und UX-Designentscheidungen von Quellen und spätere Usertests belegt werden. 
 
-% Außerdem ist das alte Tool eine Monolith Anwendung weswegen die Modernisierung einen Teil der Anwendung zur Entstehung von mehreren Micorservices führen soll. -> Puh weiß ich nicht ob das so passt
-% ohne spätere User Tests durchzuführen -> Das ist die große Frage
+% Diesen Text nochmal überarbeiten !
+
+\subsection{Relevanz der Arbeit}
+Um einen wissenschaftlichen Beitrag zu leisten, muss die Relevanz der geplanten Arbeit erläutert werden. Dabei wird die Relevanz einmal in einen praktischen und einen theoretischen Bereich aufgeteilt. Ein gutes wissenschaftliches Thema sollte in beiden Bereichen einen Beitrag leisten können. 
+Die praktische Relevanz dieser Arbeit entsteht durch das Verlangen des Unternehmens, eine Weboberfläche zu modernisieren. Dadurch, dass viele Unternehmen eine Vielzahl an Software verwenden, ist es üblich, dass diese oft gewartet oder von Grund auf neu erstellt werden müssen. Dieses Verhältnis zeigt auf, dass das Thema auch theoretische Relevanz hat, weil es anderen Entwicklern dabei helfen könnte ihre Projekte zu modernisieren. Bei der Entwicklung neuer Lösungen spielt Usability für die Akzeptanz und Benutzerfreundlichkeit eine große Rolle. Zudem ist die Datenintegrität bei Softwarelösungen für das Datenmanagement in jedem Unternehmen ein wichtiges Thema. Deswegen wäre eine Bachelorarbeit mit diesem Thema ein wissenschaftlicher Beitrag, der praktische und auch theoretische Relevanz hat. 
+
+% Hier noch die technische und praktische relevanz aufzeigen !
+% ohne spätere User Tests durchzuführen -> Das ist die große Frage -> Wahrscheinlich schon 
+
+\subsection{Vorgehensweise und Aufbau der Arbeit}
+
+Diese Hausarbeit ist in den ersten Schritten auf die Konzeption und technische Einordnung des Themas fokussiert. Danach wird die Umsetzung des Artefaktes mit Fokus auf die Entwicklungsentscheidungen thematisiert. Darauf wird das erzeugte Artefakt evaluiert. Am Ende wird dann reflektiert und ein Fazit gezogen.
 
 \section{Theoretische Grundlagen und Stand der Forschung}
 %Grundlagen des Webdesigns
@@ -71,13 +102,20 @@ Im zweiten Abschnitt geht es um die Grundlagen, verwandte Arbeiten und bestehend
 Bei verwandten Arbeiten und bestehenden Ansätzen wird nach ähnlichen wissenschaftlichen Beiträgen gesucht und der Fund beschrieben. Hier können dann Inspirationen unter anderem aufgeführt werden. 
 Um die Grundlagen abzurunden, werden noch relevante Theorien, Modelle oder Designprinzipien aufgezeigt und erläutert. Dabei sind nicht nur die Methoden, sondern auch ihre Anwendung in der Arbeit relevant.
 
+Der erste Literaturansatz wäre das Buch zu Human Centered Design \citeay{HCDBook}. Die Herangehensweise von HDC ist es, das Design nach dem Nutzer auszurichten. Zusätzlich kann die Quelle \citeay{UsibilityHeuristics} bei der Konzeption des Artefakts berücksichtigt werden. Weitere Ansätze wären Quellen wie \citeay{EfCoreLit} die einen technischen Einblick in die Verwendung von EF Core geben. Weiterhin werden die Quellen \citeay{StartedWithAngular} und \citeay{BeginningEFCore} für die technische Umsetzung verwendet. Die Quelle \citeay{StartedWithAngular} ist nicht aktuell, kann aber für die strukturelle Entwicklung mit Angular verwendet werden. Beim arbeiten mit dem Sourcecode der alten Oberfläche könnte die Quelle \citeay{ModernizingLegacyCode} hilfreich sein. 
+
+% Hieraus die Heuistict und Designprinzipien entnehmen -> Plus Angular und EF Core Literatur
+% Hier nach ersten verwandten wissenschaftlichen Arbeiten suchen 
+
 
 \section{Methodisches Vorgehen}
 %Wahl und Begründung der Forschungsmethodik (Prototypischer Ansatz)
 %Das Vorgehensmodell des Design Science Research
 %Anwendung des Vorgehens auf die vorliegende Arbeit
 
+Die Bachelorarbeit verfolgt eine prototypische Methodik, das bedeutet, dass die Dokumentation des Entwicklungsprozesses ein zentraler Aspekt der Arbeit ist. Die praktische Umsetzung der Oberfläche sollte einen tieferen Einblick in die Wichtigkeit der Entwicklungsentscheidungen liefern. Im Kern soll die Korrelation zwischen UI- und UX-Designentscheidungen und der späteren Usability des Artefaktes bestimmt werden. Um diese Korrelation zu bestimmen, werden Designprinzipien wie „Human Centered Design" und Usertests verwendet. 
 
+Hier wird auch die Verwendung der DSR Methode im Vorgehen der Arbeit beschrieben.
 
 \section{Konzeption des Artefakts}
 %Anforderungsanalyse
@@ -88,6 +126,20 @@ Um die Grundlagen abzurunden, werden noch relevante Theorien, Modelle oder Desig
 Im folgenden Abschnitt geht es um die Planung für die Entwicklung des Artefakts. Um das Artefakt gut planen zu können, sollte vorher eine Anforderungsanalyse angefertigt werden, um herauszufinden, welche Aspekte des Prototyps priorisiert werden sollten.
 Es ist ebenfalls wichtig, zu planen, welche Designprinzipien oder Methoden während der Entwicklung verwendet werden sollen. Außerdem sind ein konzeptionelles Modell und ein Plan für die Systemarchitektur hilfreich, um bei der Umsetzung Zeit zu sparen. Zusätzlich zu der Anforderungsanalyse sollten hier auch geplante Funktionalitäten und Interaktionen dokumentiert werden. 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{images/DataFlow.png}
+\caption{Datenfluss in dem Projekt}
+\label{fig:DataFlow}
+\end{figure}
+
+\subsection{Anforderungsanalyse}
+
+Die Anforderungsanalyse ist ein wichtiger Bestandteil der Konzeption des Artefakts. In diesem Abschnitt werden die funktionalen und nicht-funktionalen Anforderungen an das System beschrieben. Funktionale Anforderungen beziehen sich auf die spezifischen Funktionen und Features, während nicht-funktionale Anforderungen Aspekte wie Leistung, Sicherheit und Benutzerfreundlichkeit abdecken. 
+
+Der Prototyp soll eine moderne Weboberfläche für die Stammdatenverwaltung bieten. Zu den funktionalen Anforderungen gehören das erstellen, bearbeiten und löschen von Stammdaten. 
+Nicht-funktionale Anforderungen umfassen eine intuitive Benutzeroberfläche, schnelle Ladezeiten und die Gewähleistungen der Datenintegrität.
+
 \section{Umsetzung des Artefakts}
 %Technische Umsetzung / Prototyp-Entwicklung
 %Gestalterische und funktionale Entscheidungen (Entwicklungsendscheidungen)
@@ -95,12 +147,31 @@ Es ist ebenfalls wichtig, zu planen, welche Designprinzipien oder Methoden währ
 
 Bei der technischen Umsetzung des Artefaktes geht es vor allem um die Entwicklungsentscheidungen, Implementierungsdetails und Herausforderungen. Die Begründung der Entwicklungsentscheidungen und das Aufzeigen von Alternativen sind für diesen Abschnitt entscheidend. 
 
+Die Umsetzung des Prototyps erfolg mit dem Angular Framework für das Frontend und .NET für das Backend. Dabei werden Angular Material und Tailwind CSS für die grafische Gestaltung der Oberfläche verwendet. Die Anbindung an die Datenbank erfolgt über eine .NET-API die Entity Framework Core nutzt. 
+
+Um die Oberfläche zu erstellen werden für die unterschiedlichen Seiten Komponenten in Angular erstellt. Diese Komponenten sind für die Darstellung und Interatkion der Benutzeroberfläche verantwortlich. Die Kommunikation zwischen dem Frontend und dem Backend erfolgt über HTTP-Anfragen. Es werden GET, POST, PUT und DELETE Requests verwendet, um Daten abzurufen, zu erstellen, zu aktualisieren und zu löschen \citeay{StartedWithAngular}. Für die unterschiedlichen Abfragen wird in .NET ein Controller erstellt, der die Abfragen entgegennimmt und in der Service Datei im Backend verarbeitet.
+
+% Ich glaube für die REST API Operationen brauch ich keine Quelle sollte allgemeinwissen für Entwickler sein
+
+Entity Framework Core ist ein ORM (Object-Relational Mapping) Framework, das die Datenmodelle des Backends mit der Datenbank vergleicht. Änderungen in den Datenmodellen werden durch die SaveChanges-Methode \citeay{BeginningEFCore} zur Datenbank übermittelt.
+
+% Quelle für SaveChange -> BeginningEFCore 
+
+Änderungen werden durch LINQ-Abfragen \citeay{BeginningEFCore} durchgeführt, die eine einfache und lesbare Möglichkeit bieten, Datenbankoperationen durchzuführen. Es gibt zwei arten von Syntax, mit der LINQ Queries geschrieben werden können. Zum einen können LINQ Queries in der Methodensyntax geschrieben werden, zum anderen in der Abfragesyntax. Für die Methodensyntax wird Fluentapi verwendet, um die Abfrage zu erstellen.
+
+% Beispiel für beide Syntax LINQ Queries hier einfügen
+% - Query werden erst in Memmory aufgebaut und bei SaveChanges an die DB geschickt 
+
 \section{Evaluation}
 %Evaluationskonzept und -methodik (Sind die Anforderungen Erfüllt?)
 %Durchführung und Ergebnisse
 %Diskussion der Ergebnisse
 
-Im Evaluationsabschnitt geht es um den Vergleich der Anforderungen mit dem Endprodukt des Prototyps. Sind alle Anforderungen erledigt? Wurden alle Funktionalitäten implementiert? Diese und weitere Aspekte wie „was hätte man besser machen können?" werden in diesem Abschnitt thematisiert. 
+Im Evaluationsabschnitt geht es um den Vergleich der Anforderungen mit dem Endprodukt des Prototyps. Sind alle Anforderungen erledigt? Wurden alle Funktionalitäten implementiert? Diese und weitere Aspekte wie „was hätte man besser machen können?" werden in diesem Abschnitt thematisiert.
+
+Um die Anforderungen zu evaluieren, wird die zuvor erstellte Anforderungsanalyse als Grundlage verwendet. Es wird überprüft, ob alle funktionalen und nicht-funktionalen Anforderungen erfüllt wurden. Die Ergebnisse der Evaluation werden dokumentiert und im Team diskutiert. 
+Zusätzlich werden Usertests durchgeführt, um die Usability des Prototyps zu bewerten. Dadurch kann festgestellt werden, ob die UI- und UX-Optimierungen tatsächlich zu einer Verbesserung der Usability geführt haben.
+Nach der Evaluation werden über mögliche Verbesserungen und Anpassungen diskutiert.
 
 % Hier könnte man auch noch erwähnen das Diskussionen mit den Nutzer und dem Vorgesetzten hier einfließen 
 
@@ -117,8 +188,9 @@ Im vorletzten Abschnitt wird der Entwicklungsprozess reflektiert. Hierbei werden
 %Ausblick auf zukünftige Entwicklungen
 
 Im letzten Abschnitt wird das Ergebnis der Arbeit zusammengefasst und die Forschungsfrage beantwortet. Zum Schluss wird ein Ausblick auf die zukünftigen Entwicklungen formuliert.
-
 % Hauptthema wird die Entwicklung des Frontends, Das Backend ist auch wichtig aber bezogen auf die Forschungsfrage ist das Frontend mehr gewichtet
 
+
+\printbibliography
 
 \end{document}
