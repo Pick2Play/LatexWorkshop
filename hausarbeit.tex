@@ -8,6 +8,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
 \usepackage{bookmark}
+\usepackage{minted}
 \usepackage{graphicx}
 \geometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
 \usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
@@ -75,16 +76,16 @@ Der Bericht liefert damit nicht nur eine Reflexion über den individuellen Entwi
 %Forschungsfrage und Abgrenzung
 %Vorgehensweise und Aufbau der Arbeit
 
-In dem ersten Abschnitt der Arbeit geht es um die Problemstellung, die Motivation, die Zielsetzung, die Abgrenzung und die Vorgehensweise. Das zu lösende Problem ist, dass die veraltete Weboberfläche zu einem erhöhten Arbeitsaufwand führt. 
+In dem ersten Abschnitt der Arbeit geht es um die Problemstellung, die Motivation, die Zielsetzung, die Abgrenzung und die Vorgehensweise. Das zu lösende Problem ist, dass die veraltete Access-Anwendung zu einem erhöhten Arbeitsaufwand führt. 
 Dieses Problem soll durch eine Modernisierung der Seite gelöst werden. Das alte Tool ähnelt einer Monolith Anwendung und soll deswegen durch die Modernisierung mehr in Richtung Microservices entwickelt werden.
-Ziel des Prototyps ist, die Weboberfläche effizienter und benutzerfreundlicher für das Unternehmen zu machen. 
+Ziel des Prototyps ist, eine Weboberfläche zu entwickeln die effizienter und benutzerfreundlicher, als die Access Anwendung, für das Unternehmen ist. 
 Die Forschungsfrage „Wie können UI- und UX-Designentscheidungen bei der Entwicklung eines Angular-basierten Stammdatenmoduls mit .NET-API-Anbindung zur Verbesserung der Usability beitragen?" soll die technische Umsetzung in den Vordergrund stellen. Dabei sollen die Wirkung der UI- und UX-Designentscheidungen von Quellen und spätere Usertests belegt werden. 
 
 % Diesen Text nochmal überarbeiten !
 
 \subsection{Relevanz der Arbeit}
 Um einen wissenschaftlichen Beitrag zu leisten, muss die Relevanz der geplanten Arbeit erläutert werden. Dabei wird die Relevanz einmal in einen praktischen und einen theoretischen Bereich aufgeteilt. Ein gutes wissenschaftliches Thema sollte in beiden Bereichen einen Beitrag leisten können. 
-Die praktische Relevanz dieser Arbeit entsteht durch das Verlangen des Unternehmens, eine Weboberfläche zu modernisieren. Dadurch, dass viele Unternehmen eine Vielzahl an Software verwenden, ist es üblich, dass diese oft gewartet oder von Grund auf neu erstellt werden müssen. Dieses Verhältnis zeigt auf, dass das Thema auch theoretische Relevanz hat, weil es anderen Entwicklern dabei helfen könnte ihre Projekte zu modernisieren. Bei der Entwicklung neuer Lösungen spielt Usability für die Akzeptanz und Benutzerfreundlichkeit eine große Rolle. Zudem ist die Datenintegrität bei Softwarelösungen für das Datenmanagement in jedem Unternehmen ein wichtiges Thema. Deswegen wäre eine Bachelorarbeit mit diesem Thema ein wissenschaftlicher Beitrag, der praktische und auch theoretische Relevanz hat. 
+Die praktische Relevanz dieser Arbeit entsteht durch das Verlangen des Unternehmens, eine Access-Anwendung zu modernisieren. Dadurch, dass viele Unternehmen eine Vielzahl an Software verwenden, ist es üblich, dass diese oft gewartet oder von Grund auf neu erstellt werden müssen. Dieses Verhältnis zeigt auf, dass das Thema auch theoretische Relevanz hat, weil es anderen Entwicklern dabei helfen könnte ihre Projekte zu modernisieren. Bei der Entwicklung neuer Lösungen spielt Usability für die Akzeptanz und Benutzerfreundlichkeit eine große Rolle. Zudem ist die Datenintegrität bei Softwarelösungen für das Datenmanagement in jedem Unternehmen ein wichtiges Thema. Deswegen wäre eine Bachelorarbeit mit diesem Thema ein wissenschaftlicher Beitrag, der praktische und auch theoretische Relevanz hat. 
 
 % Hier noch die technische und praktische relevanz aufzeigen !
 % ohne spätere User Tests durchzuführen -> Das ist die große Frage -> Wahrscheinlich schon 
@@ -157,8 +158,43 @@ Entity Framework Core ist ein ORM (Object-Relational Mapping) Framework, das die
 
 % Quelle für SaveChange -> BeginningEFCore 
 
-Änderungen werden durch LINQ-Abfragen \citeay{BeginningEFCore} durchgeführt, die eine einfache und lesbare Möglichkeit bieten, Datenbankoperationen durchzuführen. Es gibt zwei arten von Syntax, mit der LINQ Queries geschrieben werden können. Zum einen können LINQ Queries in der Methodensyntax geschrieben werden, zum anderen in der Abfragesyntax. Für die Methodensyntax wird Fluentapi verwendet, um die Abfrage zu erstellen.
+Änderungen werden durch LINQ-Abfragen \citeay{BeginningEFCore} durchgeführt, die eine einfache und lesbare Möglichkeit bieten, Datenbankoperationen durchzuführen. Es gibt zwei arten von Syntax, mit der LINQ Queries geschrieben werden können. Zum einen können LINQ Queries in der Methodensyntax \ref{lst:Methodensyntax} geschrieben werden, zum anderen in der Abfragesyntax.
 
+% Stimmt das mit Fluent API so ?
+
+\begin{listing}[h]
+
+\begin{minted}{csharp}
+    var persons = from p in Persons
+        where p.firstName == "Susan"
+        select p;
+\end{minted}
+\caption{Beispiel für eine LINQ Query in Abfragesyntax \citeay{BeginningEFCore}}
+\label{lst:Abfragesyntax}
+\end{listing}
+
+Die Syntax in Listing \ref{lst:Abfragesyntax} zeigt eine LINQ Query in der Abfragesyntax, die alle Personen mit dem Vornamen „Susan" aus der Personen Tabelle abruft. Die Syntax gleicht einer SQL-Abfrage und ist für Entwickler, die mit SQL vertraut sind, leicht verständlich. Die Methodensyntax verwendet Fluentapi \citeay{BeginningEFCore}, um die Abfrage aneinander zu ketten.
+
+\begin{listing}[h]
+
+\begin{minted}{csharp}
+    var persons = Persons.Where(x => x.LastName == "Smith").ToList();
+\end{minted}
+\caption{Beispiel für eine LINQ Query in Methodensyntax \citeay{BeginningEFCore}}
+\label{lst:Methodensyntax}
+% Springt immer zu einer Quelle wenn ich den Verweise referenziere
+
+\end{listing}
+
+Die Syntax in Listing \ref{lst:Methodensyntax} zeigt eine LINQ Query in der Methodensyntax, die alle Personen mit dem Nachnamen „Smith" aus der Personen Tabelle abruft. In der Abfrage wird eine Arrowfunktion verwendet, um die Query Bedingung zu definieren.
+
+Um die Usability des Prototyps zu verbessern, werden UI- und UX-Designprinzipien angewendet. Dazu gehört die Verwendung von klaren und konsistenten Layouts, intuitiven Navigationselementen und ansprechenden visuellen Designs. Die Entwicklung orientiert sich am Human Centered Design Ansatz \citeay{HCDBook}, um sicherzustellen, dass die Bedürfnisse und Erwartungen der Benutzer berücksichtigt werden.
+Damit die UI- und UX-Designentscheidungen fundiert sind, wird auf etablierte Designprinzipien und Heuristiken zurückgegriffen \citeay{UsibilityHeuristics}.
+
+
+
+% Entwicklungsentscheidung für Methodensyntax erläutern -> Warum benutze ich diese Syntax ?
+% Einmal ToList und Arrowfunktion erklären -> Ich brauche vielleicht eine Separate Quelle für Arrowfunktions !
 % Beispiel für beide Syntax LINQ Queries hier einfügen
 % - Query werden erst in Memmory aufgebaut und bei SaveChanges an die DB geschickt 
 
@@ -166,8 +202,6 @@ Entity Framework Core ist ein ORM (Object-Relational Mapping) Framework, das die
 %Evaluationskonzept und -methodik (Sind die Anforderungen Erfüllt?)
 %Durchführung und Ergebnisse
 %Diskussion der Ergebnisse
-
-Im Evaluationsabschnitt geht es um den Vergleich der Anforderungen mit dem Endprodukt des Prototyps. Sind alle Anforderungen erledigt? Wurden alle Funktionalitäten implementiert? Diese und weitere Aspekte wie „was hätte man besser machen können?" werden in diesem Abschnitt thematisiert.
 
 Um die Anforderungen zu evaluieren, wird die zuvor erstellte Anforderungsanalyse als Grundlage verwendet. Es wird überprüft, ob alle funktionalen und nicht-funktionalen Anforderungen erfüllt wurden. Die Ergebnisse der Evaluation werden dokumentiert und im Team diskutiert. 
 Zusätzlich werden Usertests durchgeführt, um die Usability des Prototyps zu bewerten. Dadurch kann festgestellt werden, ob die UI- und UX-Optimierungen tatsächlich zu einer Verbesserung der Usability geführt haben.
@@ -181,6 +215,12 @@ Nach der Evaluation werden über mögliche Verbesserungen und Anpassungen diskut
 %Limitationen und zukünftige Arbeiten
 
 Im vorletzten Abschnitt wird der Entwicklungsprozess reflektiert. Hierbei werden die Design- und Entwicklungsentscheidungen nochmal beleuchtet und kritisch hinterfragt. Auch die Limitationen und Erkenntnisse werden für zukünftige Arbeiten beschrieben. 
+Zum Beispiel könnte die Entscheidung Methodensyntax für LINQ Queries zu verwenden reflektiert werden. Als Alternative hätte der Autor die Abfragesyntax verwenden können. Hier können die Vor- und Nachteile der beiden Syntaxen diskutiert werden. 
+Weiterhin können die getroffenen Designentscheidungen reflektiert werden. Wurden die Designprinzipien eingehalten? Wären andere Entscheidungen angemessener gewesene? 
+Konnte der Zeitplan eingehalten werden? Gab es unvorhergesehene Herausforderungen? Auch die tatsächliche Zeiteinteilung kann hier im Bezug zum Zeitplan aufgeführt werden.
+Außerdem werden Empfehlungen abgeleitet, die bei Projekten in der Zukunft berücksichtigt werden sollten.
+
+% Waren die Designentscheidungen gut? War der Zeitplan realistisch ? 
 
 \section{Fazit und Ausblick}
 %Zusammenfassung der Ergebnisse
@@ -188,7 +228,9 @@ Im vorletzten Abschnitt wird der Entwicklungsprozess reflektiert. Hierbei werden
 %Ausblick auf zukünftige Entwicklungen
 
 Im letzten Abschnitt wird das Ergebnis der Arbeit zusammengefasst und die Forschungsfrage beantwortet. Zum Schluss wird ein Ausblick auf die zukünftigen Entwicklungen formuliert.
+
 % Hauptthema wird die Entwicklung des Frontends, Das Backend ist auch wichtig aber bezogen auf die Forschungsfrage ist das Frontend mehr gewichtet
+% Ist die Usability durch die Designentscheidung verbessert worden ? -> Gibt es einen anstieg der produktivität der Nutzer ? -> Könnte das auch an der Vertrautheit mit dem alten System liegen ? etc.
 
 
 \printbibliography
